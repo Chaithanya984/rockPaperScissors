@@ -44,7 +44,7 @@ const choicesList = [
 
 const gameRuled = {
   isWin: 'YOU WON',
-  isLoss: 'YOU LOSS',
+  isLoss: 'YOU LOSE',
   isDraw: 'IT IS DRAW',
 }
 
