@@ -49,7 +49,7 @@ const gameRuled = {
 }
 
 class App extends Component {
-  state = {score: 0, userUrl: '', robotUrl: '', gameDescision: ''}
+  state = {shows: true,score: 0, userUrl: '', robotUrl: '', gameDescision: ''}
 
   startGame = event => {
     const randoms = Math.floor(Math.random() * choicesList.length)
@@ -66,6 +66,7 @@ class App extends Component {
         robotUrl: getUrl,
         gameDescision: gameRuled.isDraw,
         score: prevState.score,
+        shows: false,
       }))
     } else {
       const {gameDescision} = this.state
@@ -81,6 +82,7 @@ class App extends Component {
           robotUrl: getUrl,
           gameDescision: gameRuled.isWin,
           score: prevState.score + 1,
+          shows: false,
         }))
       } else {
         console.log('working else')
@@ -90,6 +92,7 @@ class App extends Component {
           robotUrl: getUrl,
           gameDescision: gameRuled.isLoss,
           score: prevState.score - 1,
+          shows: false,
         }))
       }
     }
@@ -108,10 +111,10 @@ class App extends Component {
       </Li>
     ))
 
-  readyGame = () => this.setState({userUrl: ''})
+  readyGame = () => this.setState({shows: true})
 
   render() {
-    const {userUrl, score, robotUrl, gameDescision} = this.state
+    const {shows,userUrl, score, robotUrl, gameDescision} = this.state
     return (
       <Divcontainer>
         <Divcontainers>
@@ -124,7 +127,7 @@ class App extends Component {
           </Designdiv>
         </Divcontainers>
         <Ul>
-          {userUrl.length === 0 ? (
+          {shows ? (
             this.getStart()
           ) : (
             <GameResultView
